@@ -96,12 +96,10 @@
         ></div>
         <div class="row">
           <div class="col-lg-7 py-vh-6 position-relative" data-aos="fade-right">
-            <h1 class="display-1 fw-bold mt-5">
-              I'll be whatever I want to be!
-            </h1>
+            <h1 class="display-1 fw-bold mt-5">Bienvenido a Justa</h1>
             <p class="lead">
-              To be honest, this is just a stupid placeholder text. We don´t
-              know how to sell anything, not even lesser or slower as you.
+              Justa es una plataforma que busca ayudar a las firmas de abogados
+              mediante la implementación de tecnología.
             </p>
             <a href="#" class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5"
               >Get started free</a
