@@ -14,7 +14,7 @@
             mediante la implementación de tecnología.
           </p>
           <a href="#" class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5"
-            >Get started free</a
+            >Registrate gratis</a
           >
         </div>
       </div>
@@ -26,4 +26,3 @@ export default {
   name: "TheTop",
 };
 </script>
-vaij

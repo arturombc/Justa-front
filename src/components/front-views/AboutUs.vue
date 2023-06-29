@@ -37,13 +37,13 @@
         </div>
         <div class="col-lg-4">
           <h3 class="py-5 border-top border-dark" data-aos="fade-left">
-            We did some interesting stuff in our field of work. For example we
-            collect a lot of these free photos and use them on our website.
+            En Justa, estamos revolucionando la forma en que los abogados
+            trabajan
           </h3>
           <p data-aos="fade-left" data-aos-delay="200">
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-            tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-            fermentum massa justo sit amet risus.
+            Nuestro software impulsado por inteligencia artificial está
+            transformando la eficiencia y la precisión en el trabajo legal,
+            permitiéndote destacar entre la competencia.
           </p>
           <p>
             <a
@@ -51,7 +51,7 @@
               class="link-fancy link-dark"
               data-aos="fade-left"
               data-aos-delay="400"
-              >Learn more
+              >Saber más
             </a>
           </p>
         </div>

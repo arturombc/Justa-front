@@ -6,9 +6,9 @@
           <div
             class="row vw-100 px-0 py-vh-5 d-flex align-items-center scrollx"
           >
-            <div class="col-md-2" data-aos="fade-up">
+            <div class="col-md-3" data-aos="fade-up">
               <img
-                src="/frontend/img/webp/interior37.webp"
+                src="@/assets/abogados1.webp"
                 class="rounded shadow img-fluid"
                 alt="nice gallery image"
                 width="512"
@@ -16,9 +16,9 @@
               />
             </div>
 
-            <div class="col-md-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
               <img
-                src="/frontend/img/webp/people1.webp"
+                src="@/assets/abogados3.webp"
                 class="img-fluid rounded shadow"
                 alt="nice gallery image"
                 width="1164"
@@ -28,31 +28,11 @@
 
             <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
               <img
-                src="/frontend/img/webp/people2.webp"
+                src="@/assets/abogados2.webp"
                 class="img-fluid rounded shadow"
                 alt="nice gallery image"
                 width="844"
                 height="1054"
-              />
-            </div>
-
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="600">
-              <img
-                src="/frontend/img/webp/interior29.webp"
-                class="img-fluid rounded shadow"
-                alt="nice gallery image"
-                width="844"
-                height="562"
-              />
-            </div>
-
-            <div class="col-md-2" data-aos="fade-up" data-aos-delay="800">
-              <img
-                src="/frontend/img/webp/people23.webp"
-                class="rounded shadow img-fluid"
-                alt="nice gallery image"
-                width="512"
-                height="341"
               />
             </div>
           </div>

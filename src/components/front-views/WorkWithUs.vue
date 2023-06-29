@@ -7,12 +7,11 @@
       <div class="row d-flex justify-content-center">
         <div class="row d-flex justify-content-center text-center">
           <div class="col-lg-8 text-center" data-aos="fade">
-            <p class="text-secondary lead">Let´s start a project together!</p>
+            <p class="text-secondary lead">Empezemos un caso</p>
             <h2 class="display-6 mb-5">
-              Hell no! This button is linked to a none working contact form. A
-              none working form without any user feedback. So you might think
-              you done something wrong. But in reality we just don´t want to
-              start anything with you or anyone else.
+              Contáctanos para aprovechar los beneficios de nuestra plataforma
+              líder en la industria. Estamos comprometidos a brindarte el apoyo
+              necesario para lograr el éxito.
             </h2>
           </div>
           <div class="col-12">
@@ -20,7 +19,7 @@
               href="#"
               class="btn btn-warning btn-xl shadow me-3 mt-4"
               data-aos="fade-down"
-              >Get in contact</a
+              >Contáctanos</a
             >
           </div>
         </div>

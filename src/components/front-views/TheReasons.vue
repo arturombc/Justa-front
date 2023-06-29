@@ -4,9 +4,7 @@
       <div class="row d-flex justify-content-end">
         <div class="col-lg-8" data-aos="fade-down">
           <h2 class="display-6">
-            Okay, there are three really good reasons for us. There are no more
-            than three, but we think three is a reasonable good number of good
-            stuff.
+            Razones para elegirnos como tu plataforma de gestión legal
           </h2>
         </div>
       </div>
@@ -14,15 +12,16 @@
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <span class="h5 fw-lighter">01.</span>
           <h3 class="py-5 border-top border-dark">
-            We rented this fancy startup office in an old factory building.
+            Aumenta tu eficiencia y productividad legal
           </h3>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
-            culpa, voluptatibus ex itaque, sapiente a consequatur inventore
-            beatae, ipsam debitis omnis consequuntur iste asperiores. Similique
-            quisquam debitis corrupti deserunt, dolor.
+            Nuestro software utiliza inteligencia artificial para agilizar los
+            procesos legales, permitiendo a los abogados realizar tareas de
+            manera más eficiente. Automatiza tareas repetitivas y proporciona
+            herramientas de análisis de datos para tomar decisiones informadas
+            de manera rápida y precisa.
           </p>
-          <a href="#" class="link-fancy">Learn more </a>
+          <a href="#" class="link-fancy">Saber más </a>
         </div>
 
         <div
@@ -32,16 +31,16 @@
         >
           <span class="h5 fw-lighter">02.</span>
           <h3 class="py-5 border-top border-dark">
-            We don´t know exactly what we are doing. But thats good because we
-            can´t break something intentionally.
+            Precisión y confiabilidad en tus resultados
           </h3>
           <p>
-            Lorem, ipsum dolor sit adipisicing elit. Minus culpa, voluptatibus
-            ex itaque, sapiente a consequatur inventore beatae, ipsam debitis
-            omnis consequuntur iste asperiores. Similique quisquam debitis
-            corrupti deserunt, dolor.
+            Con nuestra solución basada en AI, los abogados pueden confiar en
+            resultados altamente precisos y consistentes. El software utiliza
+            algoritmos avanzados para analizar grandes volúmenes de información
+            legal, reduciendo el margen de error humano y brindando resultados
+            confiables en todo momento.
           </p>
-          <a href="#" class="link-fancy">Learn more </a>
+          <a href="#" class="link-fancy">Saber más </a>
         </div>
 
         <div
@@ -51,16 +50,17 @@
         >
           <span class="h5 fw-lighter">03.</span>
           <h3 class="py-5 border-top border-dark">
-            There is no real number three reason. So please read again number
-            one and two.
+            Ahorro de tiempo y recursos.
           </h3>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
-            culpa, voluptatibus ex itaque, sapiente a consequatur inventore
-            beatae, ipsam debitis omnis consequuntur iste asperiores. Similique
-            quisquam debitis corrupti deserunt, dolor.
+            Al automatizar y optimizar tareas legales, nuestro software permite
+            a los abogados ahorrar tiempo valioso y recursos. Al liberarlos de
+            tareas rutinarias, pueden dedicar más tiempo a actividades
+            estratégicas y a brindar un servicio de mayor calidad a sus
+            clientes, lo que resulta en un aumento de la productividad y
+            rentabilidad
           </p>
-          <a href="#" class="link-fancy">Learn more </a>
+          <a href="#" class="link-fancy">Saber más </a>
         </div>
       </div>
     </div>
