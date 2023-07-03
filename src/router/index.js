@@ -17,6 +17,21 @@ const routes = [
     name: "LoginView",
     component: () => import("@/views/LoginView.vue"),
   },
+  {
+    path: "/query",
+    name: "QueryListView",
+    component: () => import("@/views/QueryListView.vue"),
+  },
+  {
+    path: "/crud",
+    name: "CrudView",
+    component: () => import("@/views/CrudView.vue"),
+  },
+  {
+    path: "/sql",
+    name: "SqlView",
+    component: () => import("@/views/SqlView.vue"),
+  },
 ];
 
 const router = createRouter({
