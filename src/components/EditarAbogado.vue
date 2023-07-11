@@ -102,22 +102,6 @@
         </select>
       </label>
       <button type="submit">Registrar Abogado</button>
-      <div v-if="errorList.length > 0">
-        <h3>Por favor corrija los siguientes errores:</h3>
-        <ul>
-          <li v-for="error in errorList" :key="error.param">
-            {{ error[0] }}
-            {{ error[1] }}
-            {{ error[2] }}
-            {{ error[3] }}
-            {{ error[4] }}
-            {{ error[5] }}
-            {{ error[6] }}
-            {{ error[7] }}
-            {{ error[8] }}
-          </li>
-        </ul>
-      </div>
     </form>
     {{ abogado }}
   </div>
@@ -140,13 +124,17 @@ export default {
         password: "",
         codigo_abogado: "",
       },
-      departamentos: [],
+      departamentos: [
+        { nombre: "Antioquia", id: 1 },
+        { nombre: "Cundinamarca", id: 2 },
+        { nombre: "Valle del Cauca", id: 3 },
+      ],
     };
   },
   methods: {
     saveAbogado() {
       axios
-        .post("http://localhost:5000/abogados", this.abogado)
+        .post("http://localhost:3000/abogados", this.abogado)
         .then((res) => {
           console.log(res.data);
           this.abogado = {
@@ -165,11 +153,7 @@ export default {
           if (err.response) {
             if (err.response.status === 400) {
               // Poner el código de validación cuando es incorrecto
-              this.errorList = err.response.data.errors; // por definir
-              // set timeout para quitar el mensaje de error
-              setTimeout(() => {
-                this.errorList = [];
-              }, 3000);
+              this.errorList = err.response.data.ALGO; // por definir
             }
             console.log(err.response.data);
           }

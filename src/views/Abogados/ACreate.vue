@@ -1,5 +1,6 @@
 <template>
-  <div id="crud">
+  <div id="bd">
+    <crud-nav></crud-nav>
     <listar-abogados></listar-abogados>
     <registrar-abogados></registrar-abogados>
     <registrar-departamentos></registrar-departamentos>
@@ -12,6 +13,7 @@ import ListarAbogados from "@/components/ListarAbogados.vue";
 import ListarDepartamentos from "@/components/ListarDepartamentos.vue";
 import RegistrarAbogados from "@/components/RegistrarAbogados.vue";
 import RegistrarDepartamentos from "@/components/RegistrarDepartamentos.vue";
+import CrudNav from "@/components/CrudNav.vue";
 export default {
   name: "CrudView",
   components: {
@@ -19,26 +21,7 @@ export default {
     RegistrarAbogados,
     RegistrarDepartamentos,
     ListarDepartamentos,
+    CrudNav,
   },
 };
 </script>
-
-<style scoped>
-#crud {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-nav {
-  padding: 30px;
-}
-reate nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>

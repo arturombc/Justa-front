@@ -32,9 +32,7 @@
                 <button
                   type="button"
                   class="btn btn-danger"
-                  @click="
-                    deleteDepartamentoNombre(departamento[0], departamento[1])
-                  "
+                  @click="deleteDepartamentoNombre(departamento.id)"
                 >
                   Delete
                 </button>
@@ -48,7 +46,10 @@
 </template>
 
 <script>
-import { getDepartmentos } from "@/services/departamentos.api";
+import {
+  getDepartmentos,
+  deleteDepartmentos,
+} from "@/services/departamentos.api";
 export default {
   data() {
     return {
@@ -56,44 +57,8 @@ export default {
         {
           nombre: "the",
           short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
-        },
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
-        },
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
-        },
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
-        },
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
-        },
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
-        },
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion:
-            "department is here, cómo sería si este departamento tuviera una descripción muy grande, como sería?",
+          descripcion: "department ",
+          id: 0,
         },
       ],
     };
@@ -106,8 +71,10 @@ export default {
       // console.log(this.departamentos);
       // console.log(response[0]);
     },
-    deleteDepartamentoNombre(nombre, short_name) {
-      console.log(nombre, short_name);
+    async deleteDepartamentoNombre(id) {
+      const response = await deleteDepartmentos(id);
+      console.log(response);
+      this.getDeparatmentosShow();
     },
   },
   mounted() {
