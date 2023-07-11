@@ -12,7 +12,6 @@
           placeholder="Nombre"
           autocomplete="given-name"
           v-model="abogado.nombre"
-          required
         />
       </label>
       <label for="apellido">
@@ -24,7 +23,6 @@
           placeholder="Apellido"
           autocomplete="family-name"
           v-model="abogado.apellido"
-          required
         />
       </label>
       <label for="telefono">
@@ -36,7 +34,6 @@
           placeholder="Teléfono"
           autocomplete="tel"
           v-model="abogado.telefono"
-          required
         />
       </label>
       <label for="email">
@@ -48,7 +45,6 @@
           placeholder="Email"
           autocomplete="email"
           v-model="abogado.email"
-          required
         />
       </label>
       <label for="username">
@@ -59,7 +55,6 @@
           name="username"
           placeholder="Username"
           v-model="abogado.username"
-          required
         />
       </label>
       <label for="password">
@@ -71,7 +66,6 @@
           placeholder="Password"
           autocomplete="password"
           v-model="abogado.password"
-          required
         />
       </label>
       <label for="codigo-abogado">
@@ -82,14 +76,23 @@
           name="codigo-abogado"
           placeholder="Código de abogado"
           v-model="abogado.codigo_abogado"
-          required
         />
       </label>
-      <label for="departamentos">
+      <label for="image">
+        <span>Imagen:</span>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          @change="onFileSelected"
+        />
+      </label>
+      <label for="dpto">
         <span>Departamento:</span>
         <select
-          name="departamento"
-          id="departamentos"
+          name="abogado-departamento"
+          id="dpto"
           v-model="abogado.departamento"
         >
           <option
@@ -140,6 +143,7 @@ export default {
         password: "",
         codigo_abogado: "",
       },
+      image: null,
       departamentos: [],
     };
   },
@@ -174,6 +178,9 @@ export default {
             console.log(err.response.data);
           }
         });
+    },
+    onFileSelected(event) {
+      this.image = event.target.files[0];
     },
   },
 };

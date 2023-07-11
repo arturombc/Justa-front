@@ -13,32 +13,32 @@
         <table>
           <thead>
             <tr>
-              <th>Tipo de documento</th>
-              <th>Número de documento</th>
+              <th>Codigo de Abogado</th>
               <th>Nombre</th>
               <th>Apellido</th>
-              <th>Sexo</th>
+              <th>Username</th>
               <th>Correo</th>
+              <th>Departamento</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr
-              v-for="persona in this.personas"
-              :key="(persona[0], persona[1])"
+              v-for="abogado in this.abogados"
+              :key="(abogado[0], abogado[1])"
             >
-              <td>{{ persona.tdoc }}</td>
-              <td>{{ persona.ndoc }}</td>
-              <td>{{ persona.nombre }}</td>
-              <td>{{ persona.apellido }}</td>
-              <td>{{ persona.sexo }}</td>
-              <td>{{ persona.correo }}</td>
+              <td>{{ abogado.abogado.codigo_abogado }}</td>
+              <td>{{ abogado.persona.nombre }}</td>
+              <td>{{ abogado.persona.apellido }}</td>
+              <td>{{ abogado.persona.username }}</td>
+              <td>{{ abogado.persona.correo }}</td>
+              <td>{{ abogado.departamento.nombre }}</td>
               <td>
                 <router-link to="/" class="btn btn-success">Edit</router-link>
                 <button
                   type="button"
                   class="btn btn-danger"
-                  @click="deletePersonaNdocTdoc(persona[0], persona[1])"
+                  @click="deletePersonaNdocTdoc(abogado.abogado.id)"
                 >
                   Delete
                 </button>
@@ -46,45 +46,39 @@
             </tr>
           </tbody>
         </table>
+        {{ abogados[0] }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getAbogados } from "@/services/abogados.api";
+import { getAbogados, deleteAbogados } from "@/services/abogados.api";
 export default {
   data() {
     return {
-      personas: [
-        {
-          tdoc: "dni",
-          ndoc: "7654321213",
-          nombre: "arturo",
-          apellido: "raaaa",
-          sexo: "M",
-          correo: "arturo@gmail.com",
-        },
-      ],
+      abogados: [],
     };
   },
   methods: {
     async getPersonasShow() {
       const response = await getAbogados();
-      this.personas = response;
-      console.log(response);
-      // console.log(this.personas);
-      // console.log(response[0]);
+      this.abogados = response.abogados;
     },
-    // deletePersonaNdocTdoc(tdoc, ndoc) {
-    //   deletePersonas(tdoc, ndoc);
-    //   this.getPersonasShow();
-    //   // const response = await deletePersona(ndoc,tdoc);
-    //   // this.personas = response;
-    // },
+    async deletePersonaNdocTdoc(id) {
+      if (confirm("¿Está seguro que desea eliminar el abogado?")) {
+        const response = await deleteAbogados(id);
+        this.getPersonasShow();
+        if (response.status === 200) {
+          alert("Abogado eliminado correctamente");
+        } else {
+          alert("Error al eliminar el abogado");
+        }
+      }
+    },
   },
   mounted() {
-    //this.getPersonasShow();
+    this.getPersonasShow();
   },
 };
 </script>
@@ -129,5 +123,13 @@ h1 {
   color: #fff;
   background-color: #0d6efd;
   border-color: #0d6efd;
+}
+
+#listar-abogados {
+  margin-top: 3rem;
+  padding: 12px 24px;
+  text-decoration: none;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 </style>
