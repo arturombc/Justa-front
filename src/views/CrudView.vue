@@ -2,20 +2,27 @@
   <div id="bd">
     <nav>
       <router-link to="/">Main</router-link> |
-      <router-link to="/crud">CRUD</router-link> |
-      <router-link to="/query">Queries</router-link> |
-      <router-link to="/sql">SQL</router-link>
+      <router-link to="/crud">Abogados</router-link> |
     </nav>
-    <the-crud></the-crud>
+    <listar-abogados></listar-abogados>
+    <registrar-abogados></registrar-abogados>
+    <registrar-departamentos></registrar-departamentos>
+    <listar-departamentos></listar-departamentos>
   </div>
 </template>
 
 <script>
-import TheCrud from "@/components/TheCrud.vue";
+import ListarAbogados from "@/components/ListarAbogados.vue";
+import ListarDepartamentos from "@/components/ListarDepartamentos.vue";
+import RegistrarAbogados from "@/components/RegistrarAbogados.vue";
+import RegistrarDepartamentos from "@/components/RegistrarDepartamentos.vue";
 export default {
   name: "CrudView",
   components: {
-    TheCrud,
+    ListarAbogados,
+    RegistrarAbogados,
+    RegistrarDepartamentos,
+    ListarDepartamentos,
   },
 };
 </script>

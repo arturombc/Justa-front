@@ -1,12 +1,12 @@
 <template>
-  <div id="crud-view">
+  <div id="listar-abogados">
     <div>
       <div>
         <h1>
           Personas
-          <!-- <router-link class="btn btn-primary float-end">
+          <router-link to="/" class="btn btn-primary float-end">
             Añadir Persona</router-link
-          > -->
+          >
         </h1>
       </div>
       <div>
@@ -25,17 +25,23 @@
           <tbody>
             <tr
               v-for="persona in this.personas"
-              :key="(persona.numero_documento, persona.tipo_documento)"
+              :key="(persona[0], persona[1])"
             >
-              <td>{{ persona[0] }}</td>
-              <td>{{ persona[1] }}</td>
-              <td>{{ persona[2] }}</td>
-              <td>{{ persona[3] }}</td>
-              <td>{{ persona[4] }}</td>
-              <td>{{ persona[5] }}</td>
+              <td>{{ persona.tdoc }}</td>
+              <td>{{ persona.ndoc }}</td>
+              <td>{{ persona.nombre }}</td>
+              <td>{{ persona.apellido }}</td>
+              <td>{{ persona.sexo }}</td>
+              <td>{{ persona.correo }}</td>
               <td>
                 <router-link to="/" class="btn btn-success">Edit</router-link>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  @click="deletePersonaNdocTdoc(persona[0], persona[1])"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -46,23 +52,39 @@
 </template>
 
 <script>
-import { getPersonas } from "@/services/crud.api.js";
+import { getAbogados } from "@/services/abogados.api";
 export default {
   data() {
     return {
-      personas: [],
+      personas: [
+        {
+          tdoc: "dni",
+          ndoc: "7654321213",
+          nombre: "arturo",
+          apellido: "raaaa",
+          sexo: "M",
+          correo: "arturo@gmail.com",
+        },
+      ],
     };
   },
   methods: {
     async getPersonasShow() {
-      const response = await getPersonas();
+      const response = await getAbogados();
       this.personas = response;
-      console.log(this.personas);
-      console.log(response[0]);
+      console.log(response);
+      // console.log(this.personas);
+      // console.log(response[0]);
     },
+    // deletePersonaNdocTdoc(tdoc, ndoc) {
+    //   deletePersonas(tdoc, ndoc);
+    //   this.getPersonasShow();
+    //   // const response = await deletePersona(ndoc,tdoc);
+    //   // this.personas = response;
+    // },
   },
   mounted() {
-    this.getPersonasShow();
+    //this.getPersonasShow();
   },
 };
 </script>
@@ -78,15 +100,15 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-#crud-view th,
-#crud-view td {
+#listar-abogados th,
+#listar-abogados td {
   text-align: left;
   padding: 8px;
 }
-#crud-view tr:nth-child(even) {
+#listar-abogados tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-#crud-view th {
+#listar-abogados th {
   background-color: #4caf50;
   color: white;
 }

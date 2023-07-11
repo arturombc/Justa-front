@@ -55,7 +55,7 @@
             <a class="nav-link" href="#testimonials"> Testimonios </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/query"> Queries </a>
+            <a class="nav-link" href="/crud"> Queries </a>
           </li>
         </ul>
         <a
