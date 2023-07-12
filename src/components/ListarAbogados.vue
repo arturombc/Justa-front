@@ -4,7 +4,10 @@
       <div>
         <h1>
           Personas
-          <router-link to="/" class="btn btn-primary float-end">
+          <router-link
+            to="/abogados-registrar"
+            class="btn btn-primary float-end"
+          >
             Añadir Persona</router-link
           >
         </h1>

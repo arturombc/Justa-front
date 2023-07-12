@@ -4,10 +4,6 @@
       <router-link to="/">Main</router-link> |
       <router-link to="/abogados-lista">Listar Abogados</router-link> |
       <router-link to="/departamentos-lista">Listar Departamentos</router-link>
-      | <router-link to="/abogados-registrar">Registrar Abogados</router-link> |
-      <router-link to="/departamentos-registrar"
-        >Registrar Departamentos</router-link
-      >
       |
       <router-link to="/">Feedback de Abogados</router-link>
     </nav>
