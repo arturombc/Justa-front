@@ -97,6 +97,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         let scrollpos = window.scrollY;
         const header = document.querySelector("#app .navbar");
+        if (!header) return;
         const header_height = header.offsetHeight;
 
         const add_class_on_scroll = () =>

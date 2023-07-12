@@ -127,7 +127,9 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
+import { postAbogados } from "@/services/abogados.api";
+import { getDepartamentos } from "@/services/departamentos.api";
 export default {
   name: "RegistrarAbogado",
   data() {
@@ -148,40 +150,45 @@ export default {
     };
   },
   methods: {
-    saveAbogado() {
-      axios
-        .post("http://localhost:5000/abogados", this.abogado)
-        .then((res) => {
-          console.log(res.data);
-          this.abogado = {
-            nombre: "",
-            apellido: "",
-            telefono: "",
-            email: "",
-            departamento: "",
-            username: "",
-            password: "",
-            codigo_abogado: "",
-          };
-          this.errorList = [];
-        })
-        .catch((err) => {
-          if (err.response) {
-            if (err.response.status === 400) {
-              // Poner el código de validación cuando es incorrecto
-              this.errorList = err.response.data.errors; // por definir
-              // set timeout para quitar el mensaje de error
-              setTimeout(() => {
-                this.errorList = [];
-              }, 3000);
-            }
-            console.log(err.response.data);
+    async saveAbogado() {
+      try {
+        const response = await postAbogados(this.abogado);
+        console.log(response);
+        this.abogado = {
+          nombre: "",
+          apellido: "",
+          telefono: "",
+          email: "",
+          departamento: "",
+          username: "",
+          password: "",
+          codigo_abogado: "",
+        };
+        this.errorList = [];
+      } catch (err) {
+        if (err.response) {
+          if (err.response.status === 400) {
+            // Poner el código de validación cuando es incorrecto
+            this.errorList = err.response.data.errors; // por definir
+            // set timeout para quitar el mensaje de error
+            setTimeout(() => {
+              this.errorList = [];
+            }, 3000);
           }
-        });
+          console.log(err.response.data);
+        }
+      }
     },
     onFileSelected(event) {
       this.image = event.target.files[0];
     },
+    async getDepartamentos_() {
+      const response = await getDepartamentos();
+      this.departamentos = response.data.departamentos;
+    },
+  },
+  mounted() {
+    this.getDepartamentos_();
   },
 };
 </script>

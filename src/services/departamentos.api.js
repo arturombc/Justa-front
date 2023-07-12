@@ -7,7 +7,7 @@ export const createDepartmentos = async (department) => {
   return data;
 };
 
-export const getDepartmentos = async () => {
+export const getDepartamentos = async () => {
   const { data } = await axios.get(BASE_URL);
   return data;
 };
