@@ -25,6 +25,16 @@
           v-model="departamento.short_name"
         />
       </label>
+      <label for="descripcion">
+        <span>Descripción :</span>
+        <textarea
+          name="descripcion"
+          placeholder="Descripcion del departamento"
+          v-model="departamento.descripcion"
+          cols="25"
+          rows="3"
+        ></textarea>
+      </label>
       <div v-if="errorList.length > 0" id="div-errors">
         <ul>
           <li v-for="error in errorList" :key="error.param">

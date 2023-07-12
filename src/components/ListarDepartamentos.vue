@@ -66,9 +66,16 @@ export default {
       console.log(this.departamentos);
     },
     async deleteDepartamentoId(id) {
-      const response = await deleteDepartamentos(id);
-      console.log(response);
-      this.getDepartamentosShow();
+      if (confirm("¿Está seguro que desea eliminar este departamento?")) {
+        const response = await deleteDepartamentos(id);
+        console.log(response);
+        this.getDepartamentosShow();
+        if (response.status == 200) {
+          alert("Departamento eliminado con éxito!");
+        } else {
+          alert("Error al eliminar el departamento");
+        }
+      }
     },
   },
   mounted() {
