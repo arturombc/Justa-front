@@ -147,31 +147,19 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post("http://127.0.0.1:5000/usuarios", {
-          nombre_empresa: "Nombre de la empresa",
-          ruc: "1234567890",
-          nombre: "Nombre de la persona",
-          apellido: "Apellido de la persona",
-          telefono: "123456789",
-          correo: "ejemplo@empresa.com",
-          username: "aasdasd",
-          password: "asd",
-        });
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async login() {
-      try {
-        const response = await axios.post("http://127.0.0.1:5000/sessiones", {
+        const response = await axios.post("http://127.0.0.1:5000/usuarios/", {
+          nombre_empresa: "asd",
+          ruc: "asd",
+          nombre: "asd",
+          apellido: this.apellido,
+          telefono: this.telefono,
+          correo: this.correo,
           username: this.username,
           password: this.password,
         });
-        console.log(response);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
-        // Aquí puedes manejar los errores, como mostrar un mensaje de error al usuario.
       }
     },
   },
