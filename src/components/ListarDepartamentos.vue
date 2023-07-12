@@ -47,29 +47,20 @@
 
 <script>
 import {
-  getDepartmentos,
+  getDepartamentos,
   deleteDepartmentos,
 } from "@/services/departamentos.api";
 export default {
   data() {
     return {
-      departamentos: [
-        {
-          nombre: "the",
-          short_name: "last",
-          descripcion: "department ",
-          id: 0,
-        },
-      ],
+      departamentos: [],
     };
   },
   methods: {
-    async getDeparatmentosShow() {
-      const response = await getDepartmentos();
-      this.departamentos = response;
-      console.log(response);
-      // console.log(this.departamentos);
-      // console.log(response[0]);
+    async getDepartamentosShow() {
+      const response = await getDepartamentos();
+      this.departamentos = response.departamentos;
+      console.log(this.departamentos);
     },
     async deleteDepartamentoNombre(id) {
       const response = await deleteDepartmentos(id);
@@ -78,7 +69,7 @@ export default {
     },
   },
   mounted() {
-    //this.getDepartamentosShow();
+    this.getDepartamentosShow();
   },
 };
 </script>

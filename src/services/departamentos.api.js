@@ -9,8 +9,6 @@ export const createDepartmentos = async (department) => {
 
 export const getDepartamentos = async () => {
   const { data } = await axios.get(BASE_URL);
-  console.log("RAAA");
-  console.log(data);
   return data;
 };
 

@@ -1,6 +1,6 @@
 <template>
-  <div id="abogado-form">
-    <h1>Registre un abogado</h1>
+  <div id="abogado-edit">
+    <h1>Abogado a editar</h1>
     <br />
     <form @submit.prevent.stop="">
       <label for="nombre">
@@ -12,7 +12,6 @@
           placeholder="Nombre"
           autocomplete="given-name"
           v-model="abogado.nombre"
-          required
         />
       </label>
       <label for="apellido">
@@ -24,7 +23,6 @@
           placeholder="Apellido"
           autocomplete="family-name"
           v-model="abogado.apellido"
-          required
         />
       </label>
       <label for="telefono">
@@ -36,7 +34,6 @@
           placeholder="Teléfono"
           autocomplete="tel"
           v-model="abogado.telefono"
-          required
         />
       </label>
       <label for="email">
@@ -48,7 +45,6 @@
           placeholder="Email"
           autocomplete="email"
           v-model="abogado.email"
-          required
         />
       </label>
       <label for="username">
@@ -59,7 +55,6 @@
           name="username"
           placeholder="Username"
           v-model="abogado.username"
-          required
         />
       </label>
       <label for="password">
@@ -71,7 +66,6 @@
           placeholder="Password"
           autocomplete="password"
           v-model="abogado.password"
-          required
         />
       </label>
       <label for="codigo-abogado">
@@ -82,14 +76,23 @@
           name="codigo-abogado"
           placeholder="Código de abogado"
           v-model="abogado.codigo_abogado"
-          required
         />
       </label>
-      <label for="departamentos">
+      <label for="image">
+        <span>Imagen:</span>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          @change="onFileSelected"
+        />
+      </label>
+      <label for="dpto">
         <span>Departamento:</span>
         <select
-          name="departamento"
-          id="departamentos"
+          name="abogado-departamento"
+          id="dpto"
           v-model="abogado.departamento"
         >
           <option
@@ -101,14 +104,31 @@
           </option>
         </select>
       </label>
-      <button type="submit">Registrar Abogado</button>
+      <button type="submit">Editar Abogado</button>
+      <div v-if="errorList.length > 0">
+        <h3>Por favor corrija los siguientes errores:</h3>
+        <ul>
+          <li v-for="error in errorList" :key="error.param">
+            {{ error[0] }}
+            {{ error[1] }}
+            {{ error[2] }}
+            {{ error[3] }}
+            {{ error[4] }}
+            {{ error[5] }}
+            {{ error[6] }}
+            {{ error[7] }}
+            {{ error[8] }}
+          </li>
+        </ul>
+      </div>
     </form>
-    {{ abogado }}
   </div>
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
+import { postAbogados } from "@/services/abogados.api";
+import { getDepartamentos } from "@/services/departamentos.api";
 export default {
   name: "RegistrarAbogado",
   data() {
@@ -124,69 +144,78 @@ export default {
         password: "",
         codigo_abogado: "",
       },
-      departamentos: [
-        { nombre: "Antioquia", id: 1 },
-        { nombre: "Cundinamarca", id: 2 },
-        { nombre: "Valle del Cauca", id: 3 },
-      ],
+      image: null,
+      departamentos: [],
     };
   },
   methods: {
-    saveAbogado() {
-      axios
-        .post("http://localhost:3000/abogados", this.abogado)
-        .then((res) => {
-          console.log(res.data);
-          this.abogado = {
-            nombre: "",
-            apellido: "",
-            telefono: "",
-            email: "",
-            departamento: "",
-            username: "",
-            password: "",
-            codigo_abogado: "",
-          };
-          this.errorList = [];
-        })
-        .catch((err) => {
-          if (err.response) {
-            if (err.response.status === 400) {
-              // Poner el código de validación cuando es incorrecto
-              this.errorList = err.response.data.ALGO; // por definir
-            }
-            console.log(err.response.data);
+    async saveAbogado() {
+      try {
+        const response = await postAbogados(this.abogado);
+        console.log(response);
+        this.abogado = {
+          nombre: "",
+          apellido: "",
+          telefono: "",
+          email: "",
+          departamento: "",
+          username: "",
+          password: "",
+          codigo_abogado: "",
+        };
+        this.errorList = [];
+      } catch (err) {
+        if (err.response) {
+          if (err.response.status === 400) {
+            // Poner el código de validación cuando es incorrecto
+            this.errorList = err.response.data.errors; // por definir
+            // set timeout para quitar el mensaje de error
+            setTimeout(() => {
+              this.errorList = [];
+            }, 3000);
           }
-        });
+          console.log(err.response.data);
+        }
+      }
     },
+    onFileSelected(event) {
+      this.image = event.target.files[0];
+    },
+    async getDepartamentos_() {
+      const response = await getDepartamentos();
+      this.departamentos = response.data.departamentos;
+    },
+  },
+  mounted() {
+    this.getDepartamentos_();
   },
 };
 </script>
 
 <style scoped>
-#abogado-form {
+#abogado-edit {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-#abogado-form table {
+#abogado-edit table {
   border-collapse: collapse;
   width: 100%;
 }
-#abogado-form th,
-#abogado-form td {
+#abogado-edit th,
+#abogado-edit td {
   text-align: left;
   padding: 8px;
 }
-#abogado-form tr:nth-child(even) {
+#abogado-edit tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-#abogado-form th {
+#abogado-edit th {
   background-color: #4caf50;
   color: white;
 }
-#abogado-form button {
+#abogado-edit button {
   margin-top: 3rem;
   background-color: #4caf50;
   border: none;
@@ -195,7 +224,7 @@ export default {
   text-decoration: none;
   font-size: 12px;
 }
-#abogado-form button:hover {
+#abogado-edit button:hover {
   background-color: #3e8e41;
 }
 

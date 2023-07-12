@@ -1,5 +1,5 @@
 <template>
-  <div id="bd">
+  <div id="a-create">
     <crud-nav></crud-nav>
     <listar-abogados></listar-abogados>
     <registrar-abogados></registrar-abogados>

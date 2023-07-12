@@ -3,6 +3,7 @@
     <nav>
       <router-link to="/">Main</router-link> |
       <router-link to="/crud">Abogados</router-link> |
+      <router-link to="/d-list">Departamentos</router-link>
     </nav>
   </div>
 </template>

@@ -22,6 +22,16 @@ const routes = [
     name: "CrudView",
     component: () => import("@/views/CrudView.vue"),
   },
+  {
+    path: "/d-list",
+    name: "DListView",
+    component: () => import("@/views/Departamentos/DListView.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFoundView",
+    component: () => import("@/views/NotFoundView.vue"),
+  },
 ];
 
 const router = createRouter({
