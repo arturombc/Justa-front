@@ -31,7 +31,6 @@
               <td>{{ departamento.short_name }}</td>
               <td>{{ departamento.descripcion }}</td>
               <td>
-                <router-link to="/" class="btn btn-success">Edit</router-link>
                 <button
                   type="button"
                   class="btn btn-danger"

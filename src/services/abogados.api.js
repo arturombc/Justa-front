@@ -16,3 +16,13 @@ export const deleteAbogados = async (id) => {
   const { data } = await axios.delete(`${BASE_URL}${id}`);
   return data;
 };
+
+export const putAbogados = async (id, abogado) => {
+  const { data } = await axios.put(`${BASE_URL}${id}/edit/`, abogado);
+  return data;
+};
+
+export const getAbogadoId = async (id) => {
+  const { data } = await axios.get(`${BASE_URL}${id}/edit/`);
+  return data;
+};

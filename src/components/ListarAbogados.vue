@@ -37,7 +37,11 @@
               <td>{{ abogado.persona.correo }}</td>
               <td>{{ abogado.departamento.nombre }}</td>
               <td>
-                <router-link to="/" class="btn btn-success">Edit</router-link>
+                <router-link
+                  :to="{ path: `/abogados/${abogado.abogado.id}/edit` }"
+                  class="btn btn-success"
+                  >Edit</router-link
+                >
                 <button
                   type="button"
                   class="btn btn-danger"

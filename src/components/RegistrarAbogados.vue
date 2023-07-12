@@ -85,7 +85,7 @@
           v-model="abogado.codigo_abogado"
         />
       </label>
-      <label for="image">
+      <!-- <label for="image">
         <span>Imagen:</span>
         <input
           type="file"
@@ -94,7 +94,7 @@
           accept="image/*"
           @change="onFileSelected"
         />
-      </label>
+      </label> -->
       <label for="dpto">
         <span>Departamento:</span>
         <select

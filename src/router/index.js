@@ -28,6 +28,11 @@ const routes = [
     component: () => import("@/views/Abogados/AListaView.vue"),
   },
   {
+    path: "/abogados/:id/edit",
+    name: "AEditView",
+    component: () => import("@/views/Abogados/AEditView.vue"),
+  },
+  {
     path: "/departamentos-registrar",
     name: "DRegisterView",
     component: () => import("@/views/Departamentos/DRegisterView.vue"),

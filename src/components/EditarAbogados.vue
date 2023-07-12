@@ -2,7 +2,7 @@
   <div id="abogado-edit">
     <h1>Abogado a editar</h1>
     <br />
-    <form @submit.prevent.stop="">
+    <form @submit.prevent.stop="saveAbogado">
       <label for="nombre">
         <span>Nombre:</span>
         <input
@@ -57,17 +57,6 @@
           v-model="abogado.username"
         />
       </label>
-      <label for="password">
-        <span>Password:</span>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          autocomplete="password"
-          v-model="abogado.password"
-        />
-      </label>
       <label for="codigo-abogado">
         <span>Código:</span>
         <input
@@ -78,7 +67,7 @@
           v-model="abogado.codigo_abogado"
         />
       </label>
-      <label for="image">
+      <!-- <label for="image">
         <span>Imagen:</span>
         <input
           type="file"
@@ -87,23 +76,7 @@
           accept="image/*"
           @change="onFileSelected"
         />
-      </label>
-      <label for="dpto">
-        <span>Departamento:</span>
-        <select
-          name="abogado-departamento"
-          id="dpto"
-          v-model="abogado.departamento"
-        >
-          <option
-            v-for="departamento in departamentos"
-            :key="departamento.id"
-            :value="departamento.id"
-          >
-            {{ departamento.nombre }}
-          </option>
-        </select>
-      </label>
+      </label> -->
       <button type="submit">Editar Abogado</button>
       <div v-if="errorList.length > 0">
         <h3>Por favor corrija los siguientes errores:</h3>
@@ -126,11 +99,9 @@
 </template>
 
 <script>
-//import axios from "axios";
-import { postAbogados } from "@/services/abogados.api";
-import { getDepartamentos } from "@/services/departamentos.api";
+import { getAbogadoId, putAbogados } from "@/services/abogados.api";
 export default {
-  name: "RegistrarAbogado",
+  name: "EditarAbogado",
   data() {
     return {
       errorList: [],
@@ -139,30 +110,18 @@ export default {
         apellido: "",
         telefono: "",
         email: "",
-        departamento: "",
         username: "",
-        password: "",
         codigo_abogado: "",
       },
       image: null,
-      departamentos: [],
+      ruta: "",
     };
   },
   methods: {
     async saveAbogado() {
       try {
-        const response = await postAbogados(this.abogado);
+        const response = await putAbogados(this.ruta, this.abogado);
         console.log(response);
-        this.abogado = {
-          nombre: "",
-          apellido: "",
-          telefono: "",
-          email: "",
-          departamento: "",
-          username: "",
-          password: "",
-          codigo_abogado: "",
-        };
         this.errorList = [];
       } catch (err) {
         if (err.response) {
@@ -181,13 +140,20 @@ export default {
     onFileSelected(event) {
       this.image = event.target.files[0];
     },
-    async getDepartamentos_() {
-      const response = await getDepartamentos();
-      this.departamentos = response.data.departamentos;
+    async getAbogados_(id) {
+      const response = await getAbogadoId(id);
+      console.log(response);
+      this.abogado.nombre = response.persona.nombre;
+      this.abogado.apellido = response.persona.apellido;
+      this.abogado.telefono = response.persona.telefono;
+      this.abogado.email = response.persona.correo;
+      this.abogado.username = response.persona.username;
+      this.abogado.codigo_abogado = response.abogado.codigo_abogado;
     },
   },
   mounted() {
-    this.getDepartamentos_();
+    this.ruta = this.$route.params.id;
+    this.getAbogados_(this.ruta);
   },
 };
 </script>
