@@ -12,7 +12,7 @@ export const getDepartamentos = async () => {
   return data;
 };
 
-export const deleteDepartmentos = async (id) => {
-  const { data } = await axios.delete(`${BASE_URL}/${id}`);
+export const deleteDepartamentos = async (id) => {
+  const { data } = await axios.delete(`${BASE_URL}/${id}/delete`);
   return data;
 };

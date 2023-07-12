@@ -32,7 +32,7 @@
                 <button
                   type="button"
                   class="btn btn-danger"
-                  @click="deleteDepartamentoNombre(departamento.id)"
+                  @click="deleteDepartamentoId(departamento.id)"
                 >
                   Delete
                 </button>
@@ -48,7 +48,7 @@
 <script>
 import {
   getDepartamentos,
-  deleteDepartmentos,
+  deleteDepartamentos,
 } from "@/services/departamentos.api";
 export default {
   data() {
@@ -62,10 +62,10 @@ export default {
       this.departamentos = response.departamentos;
       console.log(this.departamentos);
     },
-    async deleteDepartamentoNombre(id) {
-      const response = await deleteDepartmentos(id);
+    async deleteDepartamentoId(id) {
+      const response = await deleteDepartamentos(id);
       console.log(response);
-      this.getDeparatmentosShow();
+      this.getDepartamentosShow();
     },
   },
   mounted() {
