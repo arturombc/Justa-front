@@ -28,6 +28,11 @@ const routes = [
     component: () => import("@/views/Departamentos/DListView.vue"),
   },
   {
+    path: "/feed-back",
+    name: "FeedBack",
+    component: () => import("@/views/FeedBack/FeedBack.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFoundView",
     component: () => import("@/views/NotFoundView.vue"),
