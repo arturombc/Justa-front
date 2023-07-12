@@ -18,12 +18,22 @@ const routes = [
     component: () => import("@/views/LoginView.vue"),
   },
   {
-    path: "/crud",
-    name: "CrudView",
-    component: () => import("@/views/CrudView.vue"),
+    path: "/abogados-registrar",
+    name: "ARegisterView",
+    component: () => import("@/views/Abogados/ARegisterView.vue"),
   },
   {
-    path: "/d-list",
+    path: "/abogados-lista",
+    name: "AListaView",
+    component: () => import("@/views/Abogados/AListaView.vue"),
+  },
+  {
+    path: "/departamentos-registrar",
+    name: "DRegisterView",
+    component: () => import("@/views/Departamentos/DRegisterView.vue"),
+  },
+  {
+    path: "/departamentos-lista",
     name: "DListView",
     component: () => import("@/views/Departamentos/DListView.vue"),
   },

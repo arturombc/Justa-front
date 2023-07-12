@@ -37,7 +37,7 @@
                     type="text"
                     class="form-control form-control-lg"
                     id="nombre_empresa"
-                    v-model="nombre_empresa"
+                    v-model="usuario.nombre_empresa"
                   />
                 </div>
                 <div class="mb-3">
@@ -46,7 +46,7 @@
                     type="text"
                     class="form-control form-control-lg"
                     id="ruc"
-                    v-model="ruc"
+                    v-model="usuario.ruc"
                   />
                 </div>
                 <div class="mb-3">
@@ -57,7 +57,7 @@
                     type="text"
                     class="form-control form-control-lg"
                     id="nombre"
-                    v-model="nombre"
+                    v-model="usuario.nombre"
                   />
                 </div>
                 <div class="mb-3">
@@ -68,7 +68,7 @@
                     type="text"
                     class="form-control form-control-lg"
                     id="apellido"
-                    v-model="apellido"
+                    v-model="usuario.apellido"
                   />
                 </div>
                 <div class="mb-3">
@@ -77,7 +77,7 @@
                     type="tel"
                     class="form-control form-control-lg"
                     id="telefono"
-                    v-model="telefono"
+                    v-model="usuario.telefono"
                   />
                 </div>
                 <div class="mb-3">
@@ -88,7 +88,7 @@
                     type="email"
                     class="form-control form-control-lg"
                     id="correo"
-                    v-model="correo"
+                    v-model="usuario.correo"
                   />
                 </div>
                 <div class="mb-3">
@@ -99,7 +99,7 @@
                     type="text"
                     class="form-control form-control-lg"
                     id="username"
-                    v-model="username"
+                    v-model="usuario.username"
                   />
                 </div>
                 <div class="mb-3">
@@ -108,8 +108,15 @@
                     type="password"
                     class="form-control form-control-lg"
                     id="password"
-                    v-model="password"
+                    v-model="usuario.password"
                   />
+                </div>
+                <div v-if="errorList.length > 0" id="div-errors">
+                  <ul>
+                    <li v-for="error in errorList" :key="error.param">
+                      {{ error }}
+                    </li>
+                  </ul>
                 </div>
                 <button type="submit" class="btn btn-primary btn-xl">
                   Submit
@@ -134,34 +141,53 @@ import axios from "axios";
 export default {
   data() {
     return {
-      nombre_empresa: "",
-      ruc: "",
-      nombre: "",
-      apellido: "",
-      telefono: "",
-      correo: "",
-      username: "",
-      password: "",
+      usuario: {
+        nombre_empresa: "",
+        ruc: "",
+        nombre: "",
+        apellido: "",
+        telefono: "",
+        correo: "",
+        username: "",
+        password: "",
+      },
+      errorList: [],
     };
   },
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post("http://127.0.0.1:5000/usuarios/", {
-          nombre_empresa: "asd",
-          ruc: "asd",
-          nombre: "asd",
-          apellido: this.apellido,
-          telefono: this.telefono,
-          correo: this.correo,
-          username: this.username,
-          password: this.password,
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
+        const response = await axios.post(
+          "http://127.0.0.1:5000/usuarios/",
+          this.usuario
+        );
+        console.log(this.usuario);
+        console.log(response);
+      } catch (err) {
+        if (err.response) {
+          if (err.response.status === 400) {
+            // Poner el código de validación cuando es incorrecto
+            this.errorList = err.response.data.errors; // por definir
+            console.log(this.errorList);
+            // set timeout para quitar el mensaje de error
+            setTimeout(() => {
+              this.errorList = [];
+            }, 6000);
+          }
+          console.log(err.response.data);
+        }
       }
     },
   },
 };
 </script>
+
+<style scoped>
+#div-errors {
+  color: red;
+  border: 1px solid red;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f2f2f2;
+}
+</style>
