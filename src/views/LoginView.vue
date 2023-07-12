@@ -29,7 +29,7 @@
             <h1>Iniciar Sesion</h1>
             <br />
             <br />
-            <form class="row">
+            <form class="row" @submit.prevent="login">
               <div class="col-12 col-lg-10 col-xl-8">
                 <div class="mb-3">
                   <label for="username" class="form-label"
@@ -39,6 +39,7 @@
                     type="username"
                     class="form-control form-control-lg"
                     id="username"
+                    v-model="username"
                   />
                 </div>
                 <div class="mb-3">
@@ -47,6 +48,7 @@
                     type="password"
                     class="form-control form-control-lg"
                     id="password"
+                    v-model="password"
                   />
                 </div>
                 <br />
@@ -71,5 +73,33 @@
 <script>
 export default {
   name: "LoginView",
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+
+    login() {
+      const hardcodedCreds = {
+        username: "prueba",
+        password: "12345",
+      };
+      console.log(this.username);
+      console.log(this.password);
+      if (
+        this.username == hardcodedCreds.username &&
+        this.password == hardcodedCreds.password
+      ) {
+        alert("Inicio de sesión exitoso!");
+        // Aquí puedes redirigir a tu usuario a la página principal o realizar cualquier acción necesaria.
+        this.$router.push("/crud");
+      } else {
+        alert("Error en las credenciales");
+        // Aquí puedes manejar los errores de inicio de sesión, como mostrar un mensaje de error al usuario.
+      }
+    },
+  },
 };
 </script>
