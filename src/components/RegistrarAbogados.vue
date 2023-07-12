@@ -85,16 +85,6 @@
           v-model="abogado.codigo_abogado"
         />
       </label>
-      <label for="n-empresa">
-        <span>Nombre de la empresa:</span>
-        <input
-          type="text"
-          id="n-empresa"
-          name="n-empresa"
-          placeholder="Nombre de la empresa"
-          v-model="abogado.nombre_empresa"
-        />
-      </label>
       <label for="image">
         <span>Imagen:</span>
         <input
@@ -144,7 +134,7 @@ export default {
         username: "",
         password: "",
         codigo_abogado: "",
-        nombre_empresa: "",
+        nombre_empresa: "Firma los K-mens",
       },
       image: null,
       departamentos: [],
@@ -164,7 +154,6 @@ export default {
           username: "",
           password: "",
           codigo_abogado: "",
-          nombre_empresa: "",
         };
         this.errorList = [];
       } catch (err) {

@@ -3,7 +3,7 @@
     <div>
       <div>
         <h1>
-          Personas
+          Abogados
           <router-link
             to="/abogados-registrar"
             class="btn btn-primary float-end"
@@ -49,7 +49,6 @@
             </tr>
           </tbody>
         </table>
-        {{ abogados[0] }}
       </div>
     </div>
   </div>

@@ -91,7 +91,7 @@ export default {
         if (response.status == 200) {
           alert("Inicio de sesión exitoso!");
           // Aquí puedes redirigir a tu usuario a la página principal o realizar cualquier acción necesaria.
-          this.$router.push("/crud");
+          this.$router.push("/abogados-lista");
         } else {
           alert("Error en las credenciales");
           // Aquí puedes manejar los errores de inicio de sesión, como mostrar un mensaje de error al usuario.

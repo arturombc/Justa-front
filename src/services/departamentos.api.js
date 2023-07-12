@@ -13,6 +13,6 @@ export const getDepartamentos = async () => {
 };
 
 export const deleteDepartamentos = async (id) => {
-  const { data } = await axios.delete(`${BASE_URL}/${id}/delete`);
+  const { data } = await axios.delete(`${BASE_URL}${id}/delete`);
   return data;
 };
