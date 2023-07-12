@@ -2,7 +2,14 @@
   <div id="abogado-form">
     <h1>Registre un abogado</h1>
     <br />
-    <form @submit.prevent.stop="">
+    <div v-if="errorList.length > 0" id="div-errors">
+      <ul>
+        <li v-for="error in errorList" :key="error.param">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <form @submit.prevent.stop="saveAbogado">
       <label for="nombre">
         <span>Nombre:</span>
         <input
@@ -78,6 +85,16 @@
           v-model="abogado.codigo_abogado"
         />
       </label>
+      <label for="n-empresa">
+        <span>Nombre de la empresa:</span>
+        <input
+          type="text"
+          id="n-empresa"
+          name="n-empresa"
+          placeholder="Nombre de la empresa"
+          v-model="abogado.nombre_empresa"
+        />
+      </label>
       <label for="image">
         <span>Imagen:</span>
         <input
@@ -93,7 +110,7 @@
         <select
           name="abogado-departamento"
           id="dpto"
-          v-model="abogado.departamento"
+          v-model="abogado.departamento_id"
         >
           <option
             v-for="departamento in departamentos"
@@ -105,24 +122,7 @@
         </select>
       </label>
       <button type="submit">Registrar Abogado</button>
-      <div v-if="errorList.length > 0">
-        <h3>Por favor corrija los siguientes errores:</h3>
-        <ul>
-          <li v-for="error in errorList" :key="error.param">
-            {{ error[0] }}
-            {{ error[1] }}
-            {{ error[2] }}
-            {{ error[3] }}
-            {{ error[4] }}
-            {{ error[5] }}
-            {{ error[6] }}
-            {{ error[7] }}
-            {{ error[8] }}
-          </li>
-        </ul>
-      </div>
     </form>
-    {{ abogado }}
   </div>
 </template>
 
@@ -140,10 +140,11 @@ export default {
         apellido: "",
         telefono: "",
         email: "",
-        departamento: "",
+        departamento_id: "",
         username: "",
         password: "",
         codigo_abogado: "",
+        nombre_empresa: "",
       },
       image: null,
       departamentos: [],
@@ -159,10 +160,11 @@ export default {
           apellido: "",
           telefono: "",
           email: "",
-          departamento: "",
+          departamento_id: "",
           username: "",
           password: "",
           codigo_abogado: "",
+          nombre_empresa: "",
         };
         this.errorList = [];
       } catch (err) {
@@ -170,10 +172,11 @@ export default {
           if (err.response.status === 400) {
             // Poner el código de validación cuando es incorrecto
             this.errorList = err.response.data.errors; // por definir
+            console.log(this.errorList);
             // set timeout para quitar el mensaje de error
             setTimeout(() => {
               this.errorList = [];
-            }, 3000);
+            }, 6000);
           }
           console.log(err.response.data);
         }
@@ -205,20 +208,8 @@ export default {
   border-collapse: collapse;
   width: 100%;
 }
-#abogado-form th,
-#abogado-form td {
-  text-align: left;
-  padding: 8px;
-}
-#abogado-form tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-#abogado-form th {
-  background-color: #4caf50;
-  color: white;
-}
 #abogado-form button {
-  margin-top: 3rem;
+  margin-top: 2rem;
   background-color: #4caf50;
   border: none;
   color: white;
@@ -228,6 +219,10 @@ export default {
 }
 #abogado-form button:hover {
   background-color: #3e8e41;
+}
+
+label {
+  margin-bottom: 1rem;
 }
 
 form {
@@ -245,5 +240,13 @@ h1 {
 
 p {
   max-width: 700px;
+}
+
+#div-errors {
+  color: red;
+  border: 1px solid red;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f2f2f2;
 }
 </style>
