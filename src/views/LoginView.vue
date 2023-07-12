@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "LoginView",
   data() {
@@ -80,24 +81,24 @@ export default {
     };
   },
   methods: {
-
-    login() {
-      const hardcodedCreds = {
-        username: "prueba",
-        password: "12345",
-      };
-      console.log(this.username);
-      console.log(this.password);
-      if (
-        this.username == hardcodedCreds.username &&
-        this.password == hardcodedCreds.password
-      ) {
-        alert("Inicio de sesión exitoso!");
-        // Aquí puedes redirigir a tu usuario a la página principal o realizar cualquier acción necesaria.
-        this.$router.push("/crud");
-      } else {
-        alert("Error en las credenciales");
-        // Aquí puedes manejar los errores de inicio de sesión, como mostrar un mensaje de error al usuario.
+    async login() {
+      try {
+        const response = await axios.post("http://127.0.0.1:5000/sessiones", {
+          username: this.username,
+          password: this.password,
+        });
+        console.log(response);
+        if (response.status == 200) {
+          alert("Inicio de sesión exitoso!");
+          // Aquí puedes redirigir a tu usuario a la página principal o realizar cualquier acción necesaria.
+          this.$router.push("/crud");
+        } else {
+          alert("Error en las credenciales");
+          // Aquí puedes manejar los errores de inicio de sesión, como mostrar un mensaje de error al usuario.
+        }
+      } catch (error) {
+        console.error(error);
+        // Aquí puedes manejar los errores, como mostrar un mensaje de error al usuario.
       }
     },
   },

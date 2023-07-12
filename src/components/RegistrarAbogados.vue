@@ -184,7 +184,8 @@ export default {
     },
     async getDepartamentos_() {
       const response = await getDepartamentos();
-      this.departamentos = response.data.departamentos;
+      console.log(response.departamentos);
+      this.departamentos = response.departamentos;
     },
   },
   mounted() {
