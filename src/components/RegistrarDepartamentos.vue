@@ -12,7 +12,6 @@
           placeholder="Nombre"
           autocomplete="given-name"
           v-model="departamento.nombre"
-          required
         />
       </label>
       <label for="apellido">
@@ -24,12 +23,17 @@
           placeholder="Nombre corto"
           autocomplete="family-name"
           v-model="departamento.short_name"
-          required
         />
       </label>
+      <div v-if="errorList.length > 0" id="div-errors">
+        <ul>
+          <li v-for="error in errorList" :key="error.param">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
       <button type="submit">Registrar departamento</button>
     </form>
-    {{ departamento }}
   </div>
 </template>
 
@@ -43,12 +47,33 @@ export default {
         nombre: "",
         short_name: "",
       },
+      errorList: [],
     };
   },
   methods: {
     async registrardepartamento() {
-      const response = await createDepartmentos(this.departamento);
-      console.log(response);
+      try {
+        const response = await createDepartmentos(this.departamento);
+        console.log(response);
+        this.departamento = {
+          nombre: "",
+          short_name: "",
+        };
+        this.errorList = [];
+      } catch (err) {
+        if (err.response) {
+          if (err.response.status === 400) {
+            // Poner el código de validación cuando es incorrecto
+            this.errorList = err.response.data.errors; // por definir
+            console.log(this.errorList);
+            // set timeout para quitar el mensaje de error
+            setTimeout(() => {
+              this.errorList = [];
+            }, 6000);
+          }
+          console.log(err.response.data);
+        }
+      }
     },
   },
 };
@@ -60,6 +85,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
+  border: 1px solid bisque;
+  background-color: #f2f2f2;
+  /* ponerle un límite a los lados */
+  padding: 1rem;
+  border-radius: 30px;
+  max-width: 500px;
 }
 #departamento-form table {
   border-collapse: collapse;
@@ -90,6 +122,10 @@ export default {
   background-color: #3e8e41;
 }
 
+label {
+  margin-bottom: 1rem;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -105,5 +141,12 @@ h1 {
 
 p {
   max-width: 700px;
+}
+#div-errors {
+  color: red;
+  border: 1px solid red;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f2f2f2;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <crud-nav></crud-nav>
-  <div id="d-create">
+  <div id="d-lista">
     <listar-departamentos></listar-departamentos>
   </div>
 </template>

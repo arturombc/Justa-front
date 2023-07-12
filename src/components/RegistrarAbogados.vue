@@ -203,13 +203,20 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
+  border: 1px solid bisque;
+  background-color: #f2f2f2;
+  /* ponerle un límite a los lados */
+  padding: 1rem;
+  border-radius: 30px;
+  max-width: 500px;
 }
 #abogado-form table {
   border-collapse: collapse;
   width: 100%;
 }
 #abogado-form button {
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: #4caf50;
   border: none;
   color: white;

@@ -4,6 +4,9 @@
       <router-link to="/">Main</router-link> |
       <router-link to="/crud">Abogados</router-link> |
       <router-link to="/d-list">Departamentos</router-link> |
+      <router-link to="/abogados-lista">Listar Abogados</router-link> |
+      <router-link to="/departamentos-lista">Listar Departamentos</router-link>
+      |
       <router-link to="/feed-back">Feed Back</router-link>
     </nav>
   </div>
@@ -27,4 +30,5 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
-<script setup></script>
+<script setup>
+</script>

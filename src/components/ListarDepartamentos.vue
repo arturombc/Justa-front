@@ -4,7 +4,10 @@
       <div>
         <h1>
           Departamentos
-          <router-link to="/" class="btn btn-primary float-end">
+          <router-link
+            to="/departamentos-registrar"
+            class="btn btn-primary float-end"
+          >
             Añadir Departamento</router-link
           >
         </h1>

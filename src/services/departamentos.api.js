@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:5000/departamentos";
+const BASE_URL = "http://127.0.0.1:5000/departamentos/";
 
 export const createDepartmentos = async (department) => {
   const { data } = await axios.post(BASE_URL, department);
