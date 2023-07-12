@@ -27,31 +27,80 @@
           <main class="mb-auto col-12">
             <h1>Registra una nueva cuenta</h1>
 
-            <form class="row">
+            <form class="row" @submit.prevent="submitForm">
               <div class="col-12 col-lg-10 col-xl-8">
+                <div class="mb-3">
+                  <label for="nombre_empresa" class="form-label"
+                    >Nombre de la empresa</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="nombre_empresa"
+                    v-model="nombre_empresa"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="ruc" class="form-label">RUC</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="ruc"
+                    v-model="ruc"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="nombre" class="form-label"
+                    >Nombre de la persona</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="nombre"
+                    v-model="nombre"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="apellido" class="form-label"
+                    >Apellido de la persona</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="apellido"
+                    v-model="apellido"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <input
+                    type="tel"
+                    class="form-control form-control-lg"
+                    id="telefono"
+                    v-model="telefono"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="correo" class="form-label"
+                    >Correo Electrónico</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control form-control-lg"
+                    id="correo"
+                    v-model="correo"
+                  />
+                </div>
                 <div class="mb-3">
                   <label for="username" class="form-label"
                     >Nombre de usuario</label
                   >
                   <input
-                    type="username"
+                    type="text"
                     class="form-control form-control-lg"
                     id="username"
+                    v-model="username"
                   />
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label"
-                    >Correo electrónico</label
-                  >
-                  <input
-                    type="email"
-                    class="form-control form-control-lg"
-                    id="email"
-                    aria-describedby="emailHelp"
-                  />
-                  <div id="emailHelp" class="form-text">
-                    Nunca compartiremos tu correo electrónico.
-                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Contraseña</label>
@@ -59,34 +108,9 @@
                     type="password"
                     class="form-control form-control-lg"
                     id="password"
+                    v-model="password"
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="confirmation-password" class="form-label"
-                    >Confirmar contraseña</label
-                  >
-                  <input
-                    type="password"
-                    class="form-control form-control-lg"
-                    id="confirmation-password"
-                  />
-                </div>
-                <div class="mb-3 form-check py-3">
-                  <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label class="form-check-label" for="exampleCheck1"
-                    >Si quieres recibir nuestro boletín de noticias los lunes
-                    <strong>marca este botón</strong>.
-                  </label>
-                </div>
-                <p class="small text-muted">
-                  Creandote la cuenta aceptas nuestros
-                  <a href="#">Términos y Condiciones</a> y nuestra
-                  <a href="#">Política de Privacidad</a>.
-                </p>
                 <button type="submit" class="btn btn-primary btn-xl">
                   Submit
                 </button>
@@ -105,7 +129,51 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "RegisterView",
+  data() {
+    return {
+      nombre_empresa: "",
+      ruc: "",
+      nombre: "",
+      apellido: "",
+      telefono: "",
+      correo: "",
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    async submitForm() {
+      try {
+        const response = await axios.post("http://127.0.0.1:5000/usuarios", {
+          nombre_empresa: "Nombre de la empresa",
+          ruc: "1234567890",
+          nombre: "Nombre de la persona",
+          apellido: "Apellido de la persona",
+          telefono: "123456789",
+          correo: "ejemplo@empresa.com",
+          username: "aasdasd",
+          password: "asd",
+        });
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async login() {
+      try {
+        const response = await axios.post("http://127.0.0.1:5000/sessiones", {
+          username: this.username,
+          password: this.password,
+        });
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+        // Aquí puedes manejar los errores, como mostrar un mensaje de error al usuario.
+      }
+    },
+  },
 };
 </script>
